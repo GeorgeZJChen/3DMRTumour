@@ -1,0 +1,124 @@
+.title {
+  margin: auto;
+  overflow: hidden;
+  color: #000;
+  display: inline-block;
+  width: 70%;
+}
+.link:hover{
+  text-decoration: underline;
+}
+.link{
+  cursor: pointer;
+  color: #069;
+}
+.title-text {
+  width: 100%;
+  box-sizing: border-box;
+  display: inline-block;
+  text-align: left;
+}
+.author{
+  font-size: 1rem;
+}
+.panel{
+  box-sizing: border-box;
+  width: 29.5%;
+  display: inline-block;
+}
+.panel-content{
+  width: 100%;
+  height: 100%;
+  padding: 20px 10px;
+  box-sizing: border-box;
+}
+.views{
+  width: 4rem;
+  margin-top: 25px;
+  padding: 8px 5px 3px 8px;
+  border-left: 1px solid #dadada;
+  display: inline-block;
+}
+.table-of-content{
+  position: relative;
+}
+.toc-toggle{
+  width: 100%;
+  height: 30px;
+  margin-top: 15px;
+  background-color: rgb(32,35,42);
+  color: #fff;
+  padding: 0 5px;
+  line-height: 2rem;
+  box-sizing: border-box;
+  cursor: pointer;
+  user-select: none;
+  overflow: hidden;
+}
+.toc-toggle:hover{
+  color: #bbb;
+}
+.toc-toggle:active{
+  color: #999;
+}
+.toc-toggle>.angle{
+  display: inline-block;
+  float: right;
+  border: 7px solid transparent;
+  border-left: none;
+  border-right-color: inherit;
+  margin-top: 9px;
+  margin-right: 3px;
+  transition: transform ease-out 0.1s;
+}
+.toc-toggle.show>.angle{
+  transform: rotate(-90deg);
+}
+.toc-toggle.show~.toc-ul-container>.toc-ul{
+  transform: translate(0,0);
+}
+.toc-toggle.show~.toc-ul-container{
+  pointer-events: auto;
+}
+.toc-ul-container{
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+.toc-ul{
+  list-style-type: none;
+  padding: 0 5px 1px 5px;
+  margin: 0;
+  transition: transform ease-out 0.2s;
+  transform: translate(0,-100%);
+  overflow: auto;
+  overflow: visible;
+  background-color: #fff;
+  border: 1px solid rgb(32,35,42);
+  box-sizing: border-box;
+}
+.toc-ul>li{
+  height: 30px;
+  line-height: 1.8rem;
+  border-bottom: 1px solid #dadada;
+  box-sizing: border-box;
+  position: relative;
+  cursor: pointer;
+  padding-left: 5px;
+  background-color: rgb(255,255,255);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.toc-ul>li:hover:after{
+  width: 5px;
+}
+.toc-ul>li:after{
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 100%;
+  left: -5px;
+  background-color: rgb(32,35,42);
+}
