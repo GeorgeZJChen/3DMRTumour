@@ -1,9 +1,32 @@
 .content{
-
+  font-family: Lora,Palatino,Times,Times New Roman,serif;
+}
+h1, h2, h3, h4 ,p{
+  text-align: left;
+}
+h1{
+  font-weight: 400;
+  font-size: 2.3rem;
+}
+p{
+  font-size: 1.2rem;
+  line-height: 1.76;
 }
 .sec-title{
-  margin-bottom: 8px; 
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+.sec-sub-title{
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
 }
 .sec-s{
-  margin: 1px 0 8px 0;
+  margin: 0.1rem 0 1rem 0;
+}
+.sec-s-s{
+  margin: 0.1rem 0 0.5rem 0;
+  width: 25%;
+}
+.fig-ct{
+  text-align: center;
 }
