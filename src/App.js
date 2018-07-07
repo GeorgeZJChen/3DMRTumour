@@ -10,8 +10,8 @@ class App extends Component {
       <div className="App">
         <Header/>
         <div className='container'>
-          <Title/>
-          <Content/>
+          <Title ref='title'/>
+          <Content parent={this}/>
         </div>
       </div>
     )

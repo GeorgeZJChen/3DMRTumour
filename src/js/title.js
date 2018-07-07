@@ -5,15 +5,27 @@ class Title extends Component {
   constructor(props){
     super(props)
     this.btnFixed = 0
+    this.state = {
+      render: 0
+    }
+    this.SectionTitle = this.SectionTitle.bind(this)
+    this.titles = []
   }
-
+  update(titles){
+    this.titles = titles
+    this.setState((prevState)=>{
+      return {render: ~prevState.render}
+    })
+  }
   nameOnClick(){
     // TODO:
   }
+  SectionTitle(props){
+    return <li onClick={()=>this.liOnClick(props.name)} className={props.type===1?'sec-tt':'sec-st'}
+              >{props.name}</li>
+  }
   liOnClick(to){
-    if(window.location.hash === '#'+to){
-      window.location.hash = ''
-    }
+    window.location.hash = ''
     window.location.hash = '#'+to
   }
   toggleTableOfContent(){
@@ -70,13 +82,9 @@ class Title extends Component {
               </div>
               <div className='toc-ul-container'>
                 <ul className='toc-ul' style={{maxHeight: document.body.clientHeight-100}}>
-                  <li onClick={()=>this.liOnClick('Keywords')}>Keywords</li>
-                  <li onClick={()=>this.liOnClick('Summary')}>Summary</li>
-                  <li onClick={()=>this.liOnClick('Introduction')}>Introduction</li>
-                  <li>title 3</li>
-                  <li>title 4</li>
-                  <li>title 5</li>
-                  <li>title 6</li>
+                  {this.titles.map((item,index)=>{
+                    return <this.SectionTitle name={item.text} type={item.type} key={index}/>
+                  })}
                 </ul>
               </div>
             </div>

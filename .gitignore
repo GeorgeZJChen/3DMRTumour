@@ -9,6 +9,8 @@
 # production
 /build
 
+/public/MathJax
+
 # misc
 .DS_Store
 .env.local

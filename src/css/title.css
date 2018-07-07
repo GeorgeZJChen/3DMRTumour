@@ -5,6 +5,8 @@
   display: inline-block;
   width: 70%;
   vertical-align: top;
+  padding-right: 20px;
+  box-sizing: border-box;
 }
 .anchor{
   visibility: hidden;
@@ -84,11 +86,11 @@
 .toc-toggle>.angle{
   display: inline-block;
   float: right;
-  border: 7px solid transparent;
+  border: 6px solid transparent;
   border-left: none;
   border-right-color: inherit;
-  margin-top: 9px;
-  margin-right: 3px;
+  margin-top: 10px;
+  margin-right: 4px;
   transition: transform ease-out 0.1s;
 }
 .toc-toggle.show>.angle{
@@ -109,7 +111,7 @@
 }
 .toc-ul{
   list-style-type: none;
-  padding: 0 5px 1px 5px;
+  padding: 0 0 5px 0;
   margin: 0;
   transition: transform ease-out 0.2s;
   transform: translate(0,-100%);
@@ -126,19 +128,38 @@
   box-sizing: border-box;
   position: relative;
   cursor: pointer;
-  padding-left: 5px;
   background-color: rgb(255,255,255);
   white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
 }
-.toc-ul>li:hover:after{
+.toc-ul>.sec-tt:hover:after{
   width: 5px;
 }
-.toc-ul>li:after{
+.toc-ul>.sec-tt:after{
   content: '';
   position: absolute;
   width: 0;
   height: 100%;
-  left: -5px;
+  left: 0;
   background-color: rgb(32,35,42);
+}
+.sec-tt{
+  padding-left: 10px;
+  font-size: 0.9rem;
+}
+.sec-st{
+  padding-left: 18px;
+  font-size: 0.8rem;
+}
+.toc-ul>.sec-st:hover:after{
+  width: 13px;
+}
+.toc-ul>.sec-st:after{
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 100%;
+  left: 0;
+  background-color: rgba(52,55,62,0.3);
 }

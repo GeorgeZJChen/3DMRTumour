@@ -14,9 +14,7 @@ class Cite extends Component {
   }
   goToRefs(){
     const to = this.props.name
-    if(window.location.hash.replace(' ','%20') === '#'+to){
-      window.location.hash = ''
-    }
+    window.location.hash = ''
     window.location.hash = '#'+to
   }
   render() {
@@ -28,9 +26,6 @@ class Cite extends Component {
   }
 }
 class References extends Component {
-  constructor(props){
-    super(props)
-  }
   render() {
     return (
       <table className='references'>
@@ -46,10 +41,6 @@ class References extends Component {
   }
 }
 class Reference extends Component {
-  constructor(props){
-    super(props)
-
-  }
   render() {
     return (
       <tr className='reference'>

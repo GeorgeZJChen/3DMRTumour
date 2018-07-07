@@ -30,3 +30,9 @@ p{
 .fig-ct{
   text-align: center;
 }
+.math-block{
+  padding: 10px 15px;
+}
+.math-inline{
+  display: inline-block;
+}
