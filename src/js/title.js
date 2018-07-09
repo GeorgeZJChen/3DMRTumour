@@ -31,6 +31,7 @@ class Title extends Component {
   toggleTableOfContent(){
     if(this.refs.tocToggle.className.indexOf('show')===-1){
       this.refs.tocToggle.className += ' show'
+      this.refs.ul.style.maxHeight = document.documentElement.clientHeight*0.7 +'px'
     }else{
       this.refs.tocToggle.className = this.refs.tocToggle.className.replace(' show','')
     }
@@ -63,7 +64,7 @@ class Title extends Component {
     return (
       <div style={{minHeight:200}}>
         <div className='title'>
-          <h1 className='title-text'>Brain Tumour Detection and Experimental Segmentation</h1>
+          <h1 className='title-text'>{this.props.title}</h1>
           <div className='author'>
             <span className='link author-name' title="See more about the author" onClick={()=>this.nameOnClick}>Zhuojun Chen</span>,&nbsp;
             <span className='link author-org' title="Visit official site of University of Dundee" onClick={()=>window.open("http://dundee.ac.uk/")}>University of Dundee</span>
@@ -81,7 +82,7 @@ class Title extends Component {
                 <div className='angle'></div>
               </div>
               <div className='toc-ul-container'>
-                <ul className='toc-ul' style={{maxHeight: document.body.clientHeight-100}}>
+                <ul className='toc-ul' ref='ul' style={{maxHeight: document.documentElement.clientHeight*0.7}}>
                   {this.titles.map((item,index)=>{
                     return <this.SectionTitle name={item.text} type={item.type} key={index}/>
                   })}

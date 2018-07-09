@@ -1,5 +1,6 @@
 .references{
   font-size: 1rem;
+  word-break: break-word;
 }
 .cite{
   vertical-align: super;

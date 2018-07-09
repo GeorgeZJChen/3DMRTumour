@@ -6,7 +6,8 @@ class Figure extends Component {
   constructor(props){
     super(props)
     this.state = {
-      ready: 0
+      ready: 0,
+      error: 0
     }
     if(!window.__count_figures__){
       window.__count_figures__ = 1
@@ -20,11 +21,12 @@ class Figure extends Component {
     return (
       <div className='figure-frame'
          style={{width:this.props.width}}>
-        <div className='figure-container' style={{minHeight:150}}>
-          <img src={this.props.source} className='figure' alt={this.props.alt||this.props.caption}
-            onLoad={()=>this.setState({ready:1})}/>
+        <div className='figure-container' style={{minHeight:120}}>
+          <img src={this.props.source} className='figure' alt={this.props.alt||this.props.caption.props.children}
+            style={{visibility: this.state.ready&&!this.state.error?'visible':'hidden'}}
+            onLoad={()=>this.setState({ready:1})} onError={()=>this.setState({error:1})}/>
           {
-            this.state.ready?
+            this.state.ready&&!this.state.error?
             ''
             :
             <img src={loading} className="figure-loading" alt="loading" />

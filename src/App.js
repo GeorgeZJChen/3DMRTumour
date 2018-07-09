@@ -10,7 +10,7 @@ class App extends Component {
       <div className="App">
         <Header/>
         <div className='container'>
-          <Title ref='title'/>
+          <Title ref='title' title='Feature Augmentation with Multi-model Deep Learning for Brain Tumour Detection'/>
           <Content parent={this}/>
         </div>
       </div>
