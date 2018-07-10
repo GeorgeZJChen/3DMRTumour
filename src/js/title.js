@@ -39,14 +39,15 @@ class Title extends Component {
   componentDidMount(){
     const fix = ()=>{
       const top = this.refs.tocPlaceholder.offsetTop
-      if(document.documentElement.scrollTop>top){
+      const scrollTop = Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+      if(scrollTop>top){
         if(this.btnFixed === 0){
           this.btnFixed = 1
           if(this.refs.toc.className.indexOf('fixed')===-1){
             this.refs.toc.className += ' fixed'
           }
         }
-      }else if(document.documentElement.scrollTop<top-30){
+      }else if(scrollTop<top-30){
         if(this.btnFixed === 1){
           this.btnFixed = 0
           if(this.refs.toc.className.indexOf('fixed')!==-1){

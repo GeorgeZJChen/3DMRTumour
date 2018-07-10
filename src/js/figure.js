@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import loading from '../img/loading.gif'
 import '../css/figure.css'
 
 class Figure extends Component {
@@ -29,7 +28,7 @@ class Figure extends Component {
             this.state.ready&&!this.state.error?
             ''
             :
-            <img src={loading} className="figure-loading" alt="loading" />
+            <img src='img/loading.gif' className="figure-loading" alt="loading" />
           }
         </div>
         <div className='figure-caption'>

@@ -45,7 +45,7 @@ class Reference extends Component {
     return (
       <tr className='reference'>
         <td className='ref-n'>
-          [{this.props.index+1}]
+          {'['+(this.props.index+1)+']'}
           <a name={this.props.reference.name} className='anchor'>Reference {this.props.reference.name}</a>
         </td>
         <td className='ref-text'>{this.props.reference.text}</td>
