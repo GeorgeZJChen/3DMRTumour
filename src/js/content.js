@@ -263,8 +263,42 @@ class Content extends Component {
         <p>Model 1 took raw 3D patches as input and achieved a better accuracy than model 2 where the model took normalised patches as input. Given the results, it is save to conclude that texture patches are not as informative as raw patches. However, model 3 and 4 in which both form of patches were used yielded a noticeably improvement over the high accuracy achieved in model 1. It is also worth to note that while some of the greyscale information was removed in model 2’s input patches, texture information was still contained within patches in model 1. But, model 1 seemed not doing well in extracting texture features. When texture features were manually amplified (by normalisation), they came into more use for the machine to solve this classification. This was less likely to happen by chance when there were two different networks both attested the results. A technique for similar classification problems can be drawn from the findings here. To give it a name for discussion purpose, ‘feature augmentation’ may be an apt choice.</p>
         <p>Basically, the concept of feature augmentation is about prompting the machine for what to look at, by human experience. Techniques such as background removal is a typical use of feature augmentation. Removal of the background augments the non-background information. But to generalise this idea for being more philosophical, it could be a paternalism learning, where extra cares are given to the machine, or maybe a collaboration between human intelligence and artificial intelligence in a personification manner of speaking.</p>
         <p>As for model 3 and model 4, the difference between their results is less significant, so less so that there are hardly any points to argue that one has outperformed another. The CNN in Model 3 read both form of patches at once whereas two paralleled CNNs focused individually on analysing a single input feature. Farfetchedly though, if insisting that model 4 did outperform by a neck, the reason might be that model 4 had put more labour in the task, having three ‘brains’ specialised in three subtasks. In fact, model 4 may not really be able to exert its full strength since the training of its logistic model was run upon a small validation set after all.</p>
-
         <p>On the other hand, by comparing the results from two networks, it seems that the inception configuration did help to improve the performance, or maybe it could be so merely because of the larger number of parameters. None the less, this will be a constructive investigation point in further study.</p>
+
+        <p>On the basis of model 4, an additionally experimental segmentation was conducted. In a FLAIR image, 3000 cubic patches were sampled and put into the pre-trained algorithm of model 4 in which previous best results were yielded. The algorithm predicted the classes of each patch and recorded its middle voxel position in the original image if it was predicted of tumour class. The predicted positions of one example and its ground truth mask are plotted in figure 13.</p>
+        <div className='fig-ct'>
+          <Figure source='figures/segmentation11.png' caption={
+            <span>Predicted tumour voxel positions and ground truth mask. Blue marks indicate prediction and translucent dark marks indicate ground truth mask. Yellow plain is a slice of the MRI image along z axis.</span>
+          } width={360}/>
+        </div>
+        <p>From figure 13, it is to know that there were a few scattered points predicted incorrectly. To eliminate those anomaly predictions, a function <span className='math-inline'><MathJax math='c(x,y,z)'/></span> to count a predicted point’s neighbours was applied. Anomalies were detected as:</p>
+        <div className='math-block'>
+          <MathJax math='A\gets\left\{(x,y,z) \mid c(x,y,z) < C\right\}'/>
+        </div>
+        <p>With anomalies removed, the field around each central predicted voxel were saturated. After this process, a mask was predicted (See figure 14 and 15).</p>
+        <div className='fig-ct'>
+          <Figure source='figures/segmentation12.png' caption={
+            <span>Anomalies removed from figure 13.</span>
+          } width={360}/>
+          <Figure source='figures/segmentation13.png' caption={
+            <span>The predicted mask.</span>
+          } width={360}/>
+        </div>
+        <p>To evaluate the performance of this algorithm, dice score <this.Cite name='BRATS paper 1'/> was computed:</p>
+        <div className='math-block'>
+          <MathJax math='{\rm Dice}(P,T) = {\vert P_1 \wedge T_1\vert\over (\vert P_1\vert + \vert T_1\vert)/2}'/>
+        </div>
+        <p>where <span className='math-inline'><MathJax math='P \in \{0, 1\}'/></span> is the algorithmic predictions and <span className='math-inline'><MathJax math='T \in \{0, 1\}'/></span> is the experts' consensus truth.</p>
+        <p>In this case, the dice score was 0.75 which was an affirmative value, but in other cases such as the one plotted in figure 16-17 which the dice score was 0.55 the results seem less promising.</p>
+        <div className='fig-ct'>
+          <Figure source='figures/segmentation21.png' caption={
+            <span>Predictions of a not good segmentation example.</span>
+          } width={360}/>
+          <Figure source='figures/segmentation23.png' caption={
+            <span>Predicted mask of a not good segmentation example.</span>
+          } width={360}/>
+        </div>
+        <p>Optimistically, this approach was not initially conceived to solve segmentation problem, but it turned out doing an ostensibly acceptable job without too much computational effort. This is also worth further experiments.</p>
 
         <this.SectionTitle title='References'/>
         <References references={this.references}/>
