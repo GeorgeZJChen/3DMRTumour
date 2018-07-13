@@ -169,7 +169,7 @@
   width: 100%;
   height: 100%;
   position: relative;
-  animation: welcome ease-out 1s forwards;
+  animation: welcome ease-out 0.5s forwards;
   animation-delay: 3s;
 }
 .mp-welcome-content{

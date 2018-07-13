@@ -35,6 +35,7 @@ class Figure extends Component {
           <span className='figure-n'>Figure {this.number}: </span>
           {this.props.caption}
         </div>
+        <a className='figure-open' title='open' target='_blank' href={this.props.source}><img className='figure-open-clip' src='img/clip.png' alt=''/></a>
       </div>
     )
   }

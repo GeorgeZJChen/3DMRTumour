@@ -7,7 +7,7 @@ import Content from './js/content.js'
 
 class App extends Component {
   render() {
-    const title='Feature Augmentation with Multi-model Deep Learning for Brain Tumour Detection'
+    const title='Deep Learning for Brain Tumour Detection with Experimental Segmentation'
     return (
       <div className="App">
         <Header title={title} ref='header'/>

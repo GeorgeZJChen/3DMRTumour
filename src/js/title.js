@@ -57,8 +57,9 @@ class Title extends Component {
       }
     }
     document.body.onscroll = ()=>{
-      clearTimeout(this.timeoutId)
-      this.timeoutId = setTimeout(fix,20)
+      fix()
+      // clearTimeout(this.timeoutId)
+      // this.timeoutId = setTimeout(fix,20)
     }
   }
   render() {

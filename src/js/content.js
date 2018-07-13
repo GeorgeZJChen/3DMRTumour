@@ -289,7 +289,7 @@ class Content extends Component {
           <MathJax math='{\rm Dice}(P,T) = {\vert P_1 \wedge T_1\vert\over (\vert P_1\vert + \vert T_1\vert)/2}'/>
         </div>
         <p>where <span className='math-inline'><MathJax math='P \in \{0, 1\}'/></span> is the algorithmic predictions and <span className='math-inline'><MathJax math='T \in \{0, 1\}'/></span> is the experts' consensus truth.</p>
-        <p>In this case, the dice score was 0.75 which was an affirmative value, but in other cases such as the one plotted in figure 16-17 which the dice score was 0.55 the results seem less promising.</p>
+        <p>In this case, the dice score was 0.75 which was an affirmative value, but in some cases such as the one plotted in figure 16-17 having dice score of 0.55 the results seem less promising.</p>
         <div className='fig-ct'>
           <Figure source='figures/segmentation21.png' caption={
             <span>Predictions of a not good segmentation example.</span>
