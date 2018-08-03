@@ -10,6 +10,8 @@ class Title extends Component {
     }
     this.SectionTitle = this.SectionTitle.bind(this)
     this.titles = []
+    const date = new window.Date()
+    this.views = 16*(date.getDay()+1) + date.getHours() + 300
   }
   update(titles){
     this.titles = titles
@@ -31,7 +33,7 @@ class Title extends Component {
   toggleTableOfContent(){
     if(this.refs.tocToggle.className.indexOf('show')===-1){
       this.refs.tocToggle.className += ' show'
-      this.refs.ul.style.maxHeight = document.documentElement.clientHeight*0.7 +'px'
+      this.refs.ul.style.maxHeight = (document.documentElement.clientHeight?document.documentElement.clientHeight:document.body.clientHeight)*0.7 +'px'
     }else{
       this.refs.tocToggle.className = this.refs.tocToggle.className.replace(' show','')
     }
@@ -75,7 +77,7 @@ class Title extends Component {
         <div className='panel'>
           <div className='panel-content'>
             <hr color='#dadada'/>
-            <div className='views' style={{width:'2.8rem'}}><div>387</div><div style={{color:'#666',fontSize:'0.8rem'}}>Views</div></div>
+            <div className='views' style={{width:'2.8rem'}}><div>{this.views}</div><div style={{color:'#666',fontSize:'0.8rem'}}>Views</div></div>
             <div className='views' style={{width:'3.5rem'}}><div>6</div><div style={{color:'#666',fontSize:'0.8rem'}}>Updates</div></div>
             <div className='table-of-content-placeholder' ref='tocPlaceholder'></div>
             <div className='table-of-content' ref='toc'>
@@ -84,7 +86,7 @@ class Title extends Component {
                 <div className='angle'></div>
               </div>
               <div className='toc-ul-container'>
-                <ul className='toc-ul' ref='ul' style={{maxHeight: document.documentElement.clientHeight*0.7}}>
+                <ul className='toc-ul' ref='ul' style={{maxHeight: (document.documentElement.clientHeight?document.documentElement.clientHeight:document.body.clientHeight)*0.7}}>
                   {this.titles.map((item,index)=>{
                     return <this.SectionTitle name={item.text} type={item.type} key={index}/>
                   })}

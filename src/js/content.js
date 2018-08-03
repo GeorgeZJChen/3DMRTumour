@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import '../css/content.css'
 import Figure from './figure.js'
+import Windows from './window.js'
 import MyTable from './table.js'
 import {Cite, References} from './cite.js'
 import MathJax from './math.js'
@@ -303,6 +304,8 @@ class Content extends Component {
         <this.SectionTitle title='References'/>
         <References references={this.references}/>
 
+        <div className='windows-frame-size-keeper' ref='windowsSizeKeeper'></div>
+        <Windows ref='windows' parent={this}/>
       </div>
     )
   }
