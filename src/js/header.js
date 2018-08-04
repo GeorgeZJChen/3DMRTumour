@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 import '../css/header.css'
 
 class Header extends Component {
   constructor(props){
     super(props)
     this.blockShows = 0
+    this.state = {
+      renderFlag: 1
+    }
+    this.demos = []
   }
   componentDidMount(){
     document.addEventListener('click', ()=>{
@@ -16,6 +21,29 @@ class Header extends Component {
       }
       this.__click_on_more_projects__ = 0
     })
+    this.loadDemos()
+  }
+  loadDemos(){
+    const url = 'https://georgechenzj.github.io/static/demos.json'
+      axios({
+        method: 'get',
+        url: url,
+        responseType: 'json'
+      }).then((res)=>{
+        try {
+          this.demos = res.data.demos
+          this.setState((prevState)=>{
+            return {
+              renderFlag: ~prevState.renderFlag
+            }
+          })
+        } catch (e) {
+          console.warn(e);
+          console.error('Data format error');
+        }
+      }).catch((err)=>{
+        console.warn(err);
+      })
   }
   render() {
     return (
@@ -44,13 +72,16 @@ class Header extends Component {
                       <div className='mp-welcome-text'>{"Hi! Let's discover more interesting projects."}</div>
                   </div>
                 </div>
-              <div className='mp-demos'>
-                <Demo title='Microsoft Window 10 UI' desc='When you have your windows 10 desktop on web browser'
-                  source='https://georgechenzj.github.io/static/win10example1.png'
-                  link='https://georgechenzj.github.io/win10reactv1/'/>
-                <Demo title="Rubic's Cube" desc='No one has ever discovered all the endings by self. Extremely hard for mortal minds, but only harder for a machine.'
-                source='https://georgechenzj.github.io/static/rubicexample1.png'
-                link='https://georgechenzj.github.io/rubikscube/'/>
+              <div className='mp-demos' ref='demos'>
+                {
+                  this.demos.map((item, index)=>{
+                    if(item.title)
+                      return(
+                        <Demo title={item.title} desc={item.desc} source={item.preview} link={item.link} key={index}/>
+                      )
+                    return null
+                  })
+                }
               </div>
             </div>
           </div>
@@ -94,18 +125,30 @@ class Demo extends Component{
       <div className='demo'>
         <div className='demo-title'>{this.props.title}</div>
         <div className='demo-desc'>{this.props.desc}</div>
-        <div className='demo-img-frame'>
-          <img src={this.props.source} className='demo-img' alt='' title={this.props.title}
-            style={{visibility: this.state.ready&&!this.state.error?'visible':'hidden'}}
-            onLoad={()=>this.setState({ready:1})} onError={()=>this.setState({error:1})}
-            onClick={()=>this.visit()}/>
           {
-            this.state.ready&&!this.state.error?
-            ''
-            :
-            <img src='img/loading.gif' className="demo-img-loading" alt="loading" />
+            this.props.source?
+            (
+              <div className='demo-img-frame'>
+
+                <img src={this.props.source} className='demo-img' alt='' title={this.props.title}
+                style={{visibility: this.state.ready&&!this.state.error?'visible':'hidden'}}
+                onLoad={()=>this.setState({ready:1})} onError={()=>this.setState({error:1})}
+                onClick={()=>this.visit()}/>
+                {
+                  this.state.ready&&!this.state.error?
+                  ''
+                  :
+                  <img src='img/loading.gif' className="demo-img-loading" alt="loading" onClick={()=>this.visit()}/>
+                }
+              </div>
+            ):(
+              <div className='demo-img-frame'>
+                <div className='demo-plaintext' onClick={()=>this.visit()} title={this.props.title}>
+                  <img className='demo-texticon' src='img/texticon.png' alt=''/>
+                </div>
+              </div>
+            )
           }
-        </div>
       </div>
     )
   }
