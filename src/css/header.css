@@ -145,13 +145,13 @@
   box-sizing: border-box;
   border: 5px solid transparent;
 }
-.demo-img{
+.demo-plaintext, .demo-img{
   width: 100%;
   top: 0;
   left: 0;
   box-shadow: 0 0 3px 1px rgb(76, 102, 142);
 }
-.demo-img:hover{
+.demo-plaintext:hover, .demo-img:hover{
   transform: scale(1.01);
   box-shadow: 0 0 8px 2px rgb(63, 79, 103);
 }
@@ -161,6 +161,23 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
+}
+.demo-plaintext{
+  background-color: rgb(240,240,240);
+  height: 180px;
+  text-align: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  position: relative;
+}
+.demo-texticon{
+  position: absolute;
+  left: 50%;
+  top: 47%;
+  transform: translate(-50%,-50%);
+  pointer-events: none;
+  width: 62px;
+  opacity: 0.5;
 }
 .mp-demos{
   padding: 5px 0 80px 0;
